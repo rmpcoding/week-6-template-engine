@@ -1,3 +1,5 @@
+const Engineer = require("./Engineer")
+
 function Employee(name, id, email) {
   this.name = name;
   this.id = id;
@@ -14,12 +16,15 @@ function Employee(name, id, email) {
   this.getRole = function() {
     return "Employee";
   }
+  
 }
+Employee.prototype.makeEngineer = Engineer;
 
 
 
 
-// var employee1 = new Employee("jason", 8899, "theadventureking@fakemail.com" )
-// console.log(employee1.getName());
+
+
+
 
 module.exports = Employee;
