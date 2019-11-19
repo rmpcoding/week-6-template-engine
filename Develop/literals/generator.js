@@ -1,9 +1,12 @@
+const Employee = require("../lib/Employee");
+const Engineer = require("../lib/Engineer");
+const Intern = require("../lib/Intern");
+const Manager = require("../lib/Manager");
 
 
+function generator(managers) {
 
-function generator(response, name, id, email, title, github) {
-  // console.log("Hey, you're in another console brah");
-  return `<!DOCTYPE html>
+  const header= `<!DOCTYPE html>
   <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -12,60 +15,59 @@ function generator(response, name, id, email, title, github) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Template</title>
   </head>
-  <body>
-    <div class="jumbotron">
-        <h1 class="display-4 text-center">My Team</h1>
-      </div>
-      <hr class="my-4">
-  
-    <main>
+    <body>
+  <style>
+  .jumbotron {
+    background-color: rgb(199, 101, 101);
+  }
+
+  .card {
+    margin: auto;
+  }
+
+  .card-body {
+    background-color: royalblue;
+  }
+</style>
+
+<div class="jumbotron">
+<h1 class="display-4 text-center">My Team</h1>
+</div>
+<hr class="my-4">
+${generatorManager(manager)}`;
+}
+
+function generatorManager(managerParameter) {
+
+  var managerCard = `<main>
   <!-- cards -->
       <div class="card" style="width: 18rem;">
           <div class="card-body">
-            <h5 class="card-title">\\${name}\\</h5>
+            <h5 class="card-title">${managerParameter.name}</h5>
             <br>
-            <h6 class="card-subtitle mb-2">\\${title}\\</h6>
+            <h6 class="card-subtitle mb-2">Manager</h6>
           </div>
         </div>
-  
+
   <!-- lists -->
       <div class="card" style="width: 18rem;">
           <ul class="list-group list-group-flush text-center">
-            <li class="list-group-item">\\${github}\\</li>
-            <li class="list-group-item">\\${id}\\</li>
-            <li class="list-group-item">\\${email}\\</li>
+            <li class="list-group-item">${managerParameter.office}</li>
+            <li class="list-group-item">${managerParameter.id}</li>
+            <li class="list-group-item">${managerParameter.email}</li>
           </ul>
         </div>
-    </main>
-  
-  
-  
-  
-  
-    <style>
-      .jumbotron {
-        background-color: rgb(199, 101, 101);
-      }
-  
-      .card {
-        margin: auto;
-      }
-  
-      .card-body {
-        background-color: royalblue;
-      }
-  
-  
-  
-  
-    </style>
-  </body>
-  </html>`
+    </main>`
+    return manager;
 }
 
 
 
 
+
+
 module.exports = generator;
+module.exports = generatorManager;
 
 
+// managers.map(generatorManager
