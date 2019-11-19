@@ -1,10 +1,15 @@
-function Manager(officeNumber) {
-  this.officeNumber = 100;
-  this.getRole = function() {
+const Employee = require("./Employee");
+
+class Manager extends Employee {
+  constructor(name, id, email, officeNumber) {
+    super(name, id, email);
+    this.officeNumber = officeNumber;
+  }
+  getRole() {
     return "Manager";
   }
-  this.getOfficeNumber = function() {
-    return 100;
+  getOfficeNumber() {
+    return this.officeNumber;
   }
 }
 

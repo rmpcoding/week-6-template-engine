@@ -1,30 +1,24 @@
-const Engineer = require("./Engineer")
+// const Engineer = require("./Engineer")
 
-function Employee(name, id, email) {
-  this.name = name;
-  this.id = id;
-  this.email = email;
-  this.getName = function() {
-    return this.name;
+class Employee {
+  constructor(name, id, email) {
+    this.name = name;
+    this.id = id;
+    this.email = email;
   }
-  this.getId = function() {
-    return this.id;
+    getName() {
+      return this.name;
+    }
+    getId() {
+      return this.id;
+    }
+    getEmail() {
+      return this.email;
+    }
+    getRole() {
+      return "Employee";
   }
-  this.getEmail = function() {
-    return this.email;
-  }
-  this.getRole = function() {
-    return "Employee";
-  }
-  
 }
-Employee.prototype.makeEngineer = Engineer;
-
-
-
-
-
-
 
 
 module.exports = Employee;
