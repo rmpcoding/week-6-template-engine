@@ -4,6 +4,8 @@ const jest = require("jest");
 const Employee = require("./Develop/lib/Employee");
 const generator = require("./Develop/literals/generator");
 
+console.log("Please select responses for your team");
+
 var prompt = inquirer
   .prompt([
     {
@@ -20,57 +22,65 @@ var prompt = inquirer
       type: "input",
       message: "What is your manager's office number?",
       name: "office"
-    },
-    {
-      type: "list",
-      message: "What is your title?",
-      choices: ["Engineer", "Intern", "Terminate"],
-      name: "title"
     }
   ])
   .then(function(response) {
-    const { name, id, email, office, title } = response;
+    const { name, id, email, office } = response;
+    titlePrompt();
 
-    // const emp1 = new Employee(name, id, email);
-
-    if (title === "Engineer") {
-      engineerPrompt()
-    } else if (title === "Intern") {
-      internPrompt();
-    } else if (title === "Terminate") {
-      //create function to run application.
-    }
+    //   if (title === "Intern") {
+    //   internPrompt();
+    // } 
+    // else if (title === "Terminate") {
+    // }
   });
 
-function engineerPrompt() {
+  // what is your title prompt
+function titlePrompt() {
+  inquirer.prompt([
+  {
+    type: "list",
+    message: "What is your title?",
+    choices: ["Engineer", "Intern", "Terminate"],
+    name: "title"
+  }
+]).then(function (response) {
+  const {title} = response;
+  if (title === "Engineer") {
+    engineerPrompt(JSON.stringify(response.title));
+  }
+})
+}
+
+function engineerPrompt(title) {
   inquirer
     .prompt([
       {
         type: "input",
-        message: "What is your github username?",
+        message: `What is the ${title}'s name?`,
+        name: "name"
+      },
+      {
+        type: "input",
+        message: `What is the ${title}'s github username?`,
         name: "github"
       }
-    ])
-    .then(function(response) {
-      const { github } = response;
-      generator();
-    });
+    ]).then(function (response) {
+      titlePrompt();
+    })
 }
 
 function internPrompt() {
   inquirer
     .prompt([
       {
+        type: "input",
+        message: `What is the ${title}'s name?`,
         name: "name"
       },
       {
         type: "input",
-        message: "What is your manager's ID?",
-        name: "id"
-      },
-      {
-        type: "input",
-        message: "What is your school name?",
+        message: `Where does the ${title} go to school?`,
         name: "school"
       }
     ])
@@ -80,6 +90,17 @@ function internPrompt() {
 }
 
 
-// running application
-// create four html template literal generators;
 
+
+
+
+
+    // .then(function(response) {
+    //   console.log(response);
+    //   const { github } = response;
+    //   generator();
+    //   fs.appendFile("test1.html", JSON.stringify(response), err => {
+    //     if (err) console.log(err);
+    //     console.log("Successfully written to file.");
+    //   });
+    // });
