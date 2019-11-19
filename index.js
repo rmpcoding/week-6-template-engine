@@ -30,26 +30,44 @@ var prompt = inquirer
 
     //   if (title === "Intern") {
     //   internPrompt();
-    // } 
+    // }
     // else if (title === "Terminate") {
     // }
   });
 
-  // what is your title prompt
+// what is your title prompt
 function titlePrompt() {
-  inquirer.prompt([
-  {
-    type: "list",
-    message: "What is your title?",
-    choices: ["Engineer", "Intern", "Terminate"],
-    name: "title"
-  }
-]).then(function (response) {
-  const {title} = response;
-  if (title === "Engineer") {
-    engineerPrompt(JSON.stringify(response.title));
-  }
-})
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        message: "What is your title?",
+        choices: ["Engineer", "Intern", "Terminate"],
+        name: "title"
+      }
+    ])
+    .then(function(response) {
+      const { title } = response;
+      if (title === "Engineer") {
+        engineerPrompt(JSON.stringify(response.title));
+      } else if (title === "Intern") {
+        internPrompt(JSON.stringify(response.title));
+      } else if (title === "Terminate") {
+
+
+
+
+  generator();
+  fs.appendFile("test1.html", JSON.stringify(response), err => {
+    if (err) console.log(err);
+    console.log("Successfully written to file.");
+  });
+
+
+
+
+      }
+    });
 }
 
 function engineerPrompt(title) {
@@ -65,12 +83,13 @@ function engineerPrompt(title) {
         message: `What is the ${title}'s github username?`,
         name: "github"
       }
-    ]).then(function (response) {
+    ])
+    .then(function(response) {
       titlePrompt();
-    })
+    });
 }
 
-function internPrompt() {
+function internPrompt(title) {
   inquirer
     .prompt([
       {
@@ -85,22 +104,16 @@ function internPrompt() {
       }
     ])
     .then(function(response) {
-      const { school } = response;
+      titlePrompt();
     });
 }
 
-
-
-
-
-
-
-    // .then(function(response) {
-    //   console.log(response);
-    //   const { github } = response;
-    //   generator();
-    //   fs.appendFile("test1.html", JSON.stringify(response), err => {
-    //     if (err) console.log(err);
-    //     console.log("Successfully written to file.");
-    //   });
-    // });
+// .then(function(response) {
+//   console.log(response);
+//   const { github } = response;
+//   generator();
+//   fs.appendFile("test1.html", JSON.stringify(response), err => {
+//     if (err) console.log(err);
+//     console.log("Successfully written to file.");
+//   });
+// });
