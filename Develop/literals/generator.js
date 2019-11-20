@@ -3,7 +3,7 @@ const Engineer = require("../lib/Engineer");
 const Intern = require("../lib/Intern");
 const Manager = require("../lib/Manager");
 
-function generator() {
+const generator = (response) => {
   console.log("hi");
   var header = `<!DOCTYPE html>
   <html lang="en">
@@ -38,7 +38,7 @@ ${generatorEngineer(engineerArray)}
 ${generatorIntern(internArray)}`;
 }
 
-function generatorManager(managerParameter) {
+const generatorManager = (managerParameter) => {
   var managerCard = `<main>
   <!-- cards -->
       <div class="card" style="width: 18rem;">
@@ -61,7 +61,7 @@ function generatorManager(managerParameter) {
   return managerCard;
 }
 
-function generatorEngineer(engineerParameter) {
+const generatorEngineer = (engineerParameter) => {
   console.log(engineerParameter);
   var engineerCard = `<main>
   <!-- cards -->
@@ -85,7 +85,7 @@ function generatorEngineer(engineerParameter) {
   return engineerCard;
 }
 
-function generatorIntern(internParameter) {
+const generatorIntern = (internParameter) => {
   var internCard = `<main>
   <!-- cards -->
       <div class="card" style="width: 18rem;">
@@ -108,7 +108,12 @@ function generatorIntern(internParameter) {
   return internCard;
 }
 
-module.exports = generator;
-module.exports = generatorManager;
-module.exports = generatorEngineer;
-module.exports = generatorIntern;
+// module.exports.generator = generator.generator;
+// module.exports.generatorManager = generatorManager;
+
+module.exports = {
+  generator: generator,
+  generatorManager: generatorManager,
+  generatorEngineer:generatorEngineer,
+  generatorIntern: generatorIntern
+}

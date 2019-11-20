@@ -2,15 +2,16 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 const jest = require("jest");
 const Employee = require("./Develop/lib/Employee");
-const generator = require("./Develop/literals/generator");
-const generatorManager = require("./Develop/literals/generator");
-const generatorEngineer = require("./Develop/literals/generator");
-const generatorIntern = require("./Develop/literals/generator");
+var generator = require("./Develop/literals/generator");
+var generatorManager = require("./Develop/literals/generator");
+var generatorEngineer = require("./Develop/literals/generator");
+var generatorIntern = require("./Develop/literals/generator");
 
 let manager;
 const engineerArray = [];
 const internArray = [];
 
+console.log(generator());
 // First message to show
 console.log("Please select responses for your team");
 
@@ -39,7 +40,6 @@ var mainPrompt = inquirer
     }
   ])
   .then(function(response) {
-    // console.log(response);
     manager = response;
     titlePrompt(); //calls titlePrompt function
   });
@@ -65,8 +65,7 @@ function titlePrompt() {
       } else if (title === "Intern") {
         internPrompt(title);
       } else if (title === "Terminate") {
-        console.log(generator());
-        generator();
+        // generator();
         // fs.appendFile("test1.html", JSON.stringify(response), err => {
         //   if (err) console.log(err);
         //   console.log("Successfully written to file.");
