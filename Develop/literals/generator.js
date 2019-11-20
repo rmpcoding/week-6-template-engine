@@ -3,10 +3,9 @@ const Engineer = require("../lib/Engineer");
 const Intern = require("../lib/Intern");
 const Manager = require("../lib/Manager");
 
-
-function generator(managers) {
-
-  const header= `<!DOCTYPE html>
+function generator() {
+  console.log("hi");
+  var header = `<!DOCTYPE html>
   <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -34,11 +33,12 @@ function generator(managers) {
 <h1 class="display-4 text-center">My Team</h1>
 </div>
 <hr class="my-4">
-${generatorManager(manager)}`;
+${generatorManager(manager)}
+${generatorEngineer(engineerArray)}
+${generatorIntern(internArray)}`;
 }
 
 function generatorManager(managerParameter) {
-
   var managerCard = `<main>
   <!-- cards -->
       <div class="card" style="width: 18rem;">
@@ -57,17 +57,58 @@ function generatorManager(managerParameter) {
             <li class="list-group-item">${managerParameter.email}</li>
           </ul>
         </div>
-    </main>`
-    return manager;
+    </main>`;
+  return managerCard;
 }
 
+function generatorEngineer(engineerParameter) {
+  console.log(engineerParameter);
+  var engineerCard = `<main>
+  <!-- cards -->
+      <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">${engineerParameter.name}</h5>
+            <br>
+            <h6 class="card-subtitle mb-2">Engineer</h6>
+          </div>
+        </div>
 
+  <!-- lists -->
+      <div class="card" style="width: 18rem;">
+          <ul class="list-group list-group-flush text-center">
+            <li class="list-group-item">${engineerParameter.id}</li>
+            <li class="list-group-item">${engineerParameter.email}</li>
+            <li class="list-group-item">${engineerParameter.github}</li>
+          </ul>
+        </div>
+    </main>`;
+  return engineerCard;
+}
 
+function generatorIntern(internParameter) {
+  var internCard = `<main>
+  <!-- cards -->
+      <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">${internParameter}</h5>
+            <br>
+            <h6 class="card-subtitle mb-2">Intern</h6>
+          </div>
+        </div>
 
-
+  <!-- lists -->
+      <div class="card" style="width: 18rem;">
+          <ul class="list-group list-group-flush text-center">
+            <li class="list-group-item">${internParameter}</li>
+            <li class="list-group-item">${internParameter}</li>
+            <li class="list-group-item">${internParameter}</li>
+          </ul>
+        </div>
+    </main>`;
+  return internCard;
+}
 
 module.exports = generator;
 module.exports = generatorManager;
-
-
-// managers.map(generatorManager
+module.exports = generatorEngineer;
+module.exports = generatorIntern;

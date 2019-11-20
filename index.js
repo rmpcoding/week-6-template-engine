@@ -3,9 +3,11 @@ const inquirer = require("inquirer");
 const jest = require("jest");
 const Employee = require("./Develop/lib/Employee");
 const generator = require("./Develop/literals/generator");
-const generatorManager = require ("./Develop/literals/generator")
+const generatorManager = require("./Develop/literals/generator");
+const generatorEngineer = require("./Develop/literals/generator");
+const generatorIntern = require("./Develop/literals/generator");
 
-let managers;
+let manager;
 const engineerArray = [];
 const internArray = [];
 
@@ -37,13 +39,12 @@ var mainPrompt = inquirer
     }
   ])
   .then(function(response) {
-    managers = response;
-    console.log(managers)
-    // generator(manager);
+    // console.log(response);
+    manager = response;
     titlePrompt(); //calls titlePrompt function
   });
 
-  let title;
+let title;
 
 // what is your title prompt
 function titlePrompt() {
@@ -56,30 +57,20 @@ function titlePrompt() {
         name: "title"
       }
     ])
-    .then(function(response) { 
-      // console.log(response); //this response is passing through ONLY the titlePrompt response, title.
-       title = response.title; //then destructures title. Do I need this?
-       console.log(title);
-       
+    .then(function(response) {
+      title = response.title; //then destructures title. Do I need this?
 
       if (title === "Engineer") {
-        engineerPrompt(JSON.stringify(response.title));
+        engineerPrompt(title); //probably don't need title as a parameter
       } else if (title === "Intern") {
-        internPrompt(JSON.stringify(response.title));
+        internPrompt(title);
       } else if (title === "Terminate") {
-
-
-
-
-  generator();
-  fs.appendFile("test1.html", JSON.stringify(response), err => {
-    if (err) console.log(err);
-    console.log("Successfully written to file.");
-  });
-
-
-
-
+        console.log(generator());
+        generator();
+        // fs.appendFile("test1.html", JSON.stringify(response), err => {
+        //   if (err) console.log(err);
+        //   console.log("Successfully written to file.");
+        // });
       }
     });
 }
@@ -94,11 +85,22 @@ function engineerPrompt(title) {
       },
       {
         type: "input",
+        message: `What is the ${title}'s id?`,
+        name: "id"
+      },
+      {
+        type: "input",
+        message: `What is the ${title}'s email?`,
+        name: "email"
+      },
+      {
+        type: "input",
         message: `What is the ${title}'s github username?`,
         name: "github"
       }
     ])
     .then(function(response) {
+      engineerArray.push(response);
       titlePrompt();
     });
 }
@@ -113,32 +115,22 @@ function internPrompt(title) {
       },
       {
         type: "input",
+        message: `What is the ${title}'s id?`,
+        name: "id"
+      },
+      {
+        type: "input",
+        message: `What is the ${title}'s email?`,
+        name: "email"
+      },
+      {
+        type: "input",
         message: `Where does the ${title} go to school?`,
         name: "school"
       }
     ])
     .then(function(response) {
+      internArray.push(response);
       titlePrompt();
     });
 }
-
-// .then(function(response) {
-//   console.log(response);
-//   const { github } = response;
-//   generator();
-//   fs.appendFile("test1.html", JSON.stringify(response), err => {
-//     if (err) console.log(err);
-//     console.log("Successfully written to file.");
-//   });
-// });
-
-
-
-
-// Unusuable.
-    //   if (title === "Intern") {
-    //   internPrompt();
-    // }
-    // else if (title === "Terminate") {
-    // }
-
