@@ -1,11 +1,12 @@
-const Employee = require("../lib/Employee");
-const Engineer = require("../lib/Engineer");
-const Intern = require("../lib/Intern");
-const Manager = require("../lib/Manager");
+const Employee = require('../lib/Employee');
+const Engineer = require('../lib/Engineer');
+const Intern = require('../lib/Intern');
+const Manager = require('../lib/Manager');
 
-const generator = (response) => {
-  console.log("hi");
-  var header = `<!DOCTYPE html>
+
+const generator = response => {
+    console.log(response);
+    let htmlTemplate = `<!DOCTYPE html>
   <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -33,13 +34,16 @@ const generator = (response) => {
 <h1 class="display-4 text-center">My Team</h1>
 </div>
 <hr class="my-4">
-${generatorManager(manager)}
-${generatorEngineer(engineerArray)}
-${generatorIntern(internArray)}`;
-}
 
-const generatorManager = (managerParameter) => {
-  var managerCard = `<main>
+${generatorManager(Manager)}
+${generatorEngineer(Engineer)}
+${generatorIntern(Intern)}`;
+    return htmlTemplate;
+};
+
+const generatorManager = managerParameter => {
+  console.log(managerParameter)
+    let managerCard = `<main>
   <!-- cards -->
       <div class="card" style="width: 18rem;">
           <div class="card-body">
@@ -58,12 +62,12 @@ const generatorManager = (managerParameter) => {
           </ul>
         </div>
     </main>`;
-  return managerCard;
-}
+    return managerCard;
+};
 
-const generatorEngineer = (engineerParameter) => {
-  console.log(engineerParameter);
-  var engineerCard = `<main>
+const generatorEngineer = engineerParameter => {
+    console.log(engineerParameter);
+    let engineerCard = `<main>
   <!-- cards -->
       <div class="card" style="width: 18rem;">
           <div class="card-body">
@@ -82,11 +86,12 @@ const generatorEngineer = (engineerParameter) => {
           </ul>
         </div>
     </main>`;
-  return engineerCard;
-}
+    return engineerCard;
+};
 
-const generatorIntern = (internParameter) => {
-  var internCard = `<main>
+const generatorIntern = internParameter => {
+    console.log(internParameter)
+    let internCard = `<main>
   <!-- cards -->
       <div class="card" style="width: 18rem;">
           <div class="card-body">
@@ -105,15 +110,12 @@ const generatorIntern = (internParameter) => {
           </ul>
         </div>
     </main>`;
-  return internCard;
-}
-
-// module.exports.generator = generator.generator;
-// module.exports.generatorManager = generatorManager;
+    return internCard;
+};
 
 module.exports = {
-  generator: generator,
-  generatorManager: generatorManager,
-  generatorEngineer:generatorEngineer,
-  generatorIntern: generatorIntern
-}
+    generator: generator,
+    generatorManager: generatorManager,
+    generatorEngineer: generatorEngineer,
+    generatorIntern: generatorIntern
+};
