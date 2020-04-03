@@ -8,7 +8,7 @@ const generator = require('./Develop/literals/generator');
 // let engineerArray = [];
 let internArray = [];
 
-let htmlTemplate = generator.generator();
+// let htmlTemplate = generator.generator();
 
 // Commence cli application via inquirer
 // ============================================================
@@ -35,11 +35,12 @@ var mainPrompt = inquirer
             name: 'office'
         }
     ])
-    .then(function(response) {
-        titlePrompt(response);
+    .then(function(managerResponse) {
+        titlePrompt(managerResponse);
     });
 
-function titlePrompt() {
+function titlePrompt(managerResponse) {
+    console.log(managerResponse)
     inquirer
         .prompt([
             {
@@ -51,14 +52,22 @@ function titlePrompt() {
         ])
         .then(function(response) {
             title = response.title;
+            console.log(response)
 
             if (title === 'Engineer') {
+                console.log(managerResponse)
+                console.log(response)
                 engineerPrompt(title);
-            } else if (title === 'Intern') {
+            } 
+            if (title === 'Intern') {
+                console.log(managerResponse)
                 internPrompt(title);
-            } else if (title === 'Finished!') {
+            } 
+            if (title === 'Finished!') {
+                console.log(managerResponse)
+                managerResponse = JSON.stringify(managerResponse)
 
-                fs.writeFile('test1.html', htmlTemplate, err => {
+                fs.writeFile('index.html', generator.generator(managerResponse), err => {
                     if (err) {
                         console.log(err);
                     } else {

@@ -4,8 +4,9 @@ const Intern = require('../lib/Intern');
 const Manager = require('../lib/Manager');
 
 
-const generator = response => {
-    console.log(response);
+const generator = (managerResponse) => {
+    console.log(managerResponse + "inside line 8 of Generator function");
+    
     let htmlTemplate = `<!DOCTYPE html>
   <html lang="en">
   <head>
@@ -35,19 +36,20 @@ const generator = response => {
 </div>
 <hr class="my-4">
 
-${generatorManager(Manager)}
+${generatorManager(managerResponse)}
 ${generatorEngineer(Engineer)}
 ${generatorIntern(Intern)}`;
     return htmlTemplate;
 };
 
-const generatorManager = managerParameter => {
-  console.log(managerParameter)
+const generatorManager = (response) => {
+  response = 
+  console.log(response + "INSIDE MANAGER CARD")
     let managerCard = `<main>
   <!-- cards -->
       <div class="card" style="width: 18rem;">
           <div class="card-body">
-            <h5 class="card-title">${managerParameter.name}</h5>
+            <h5 class="card-title">Manager</h5>
             <br>
             <h6 class="card-subtitle mb-2">Manager</h6>
           </div>
@@ -56,9 +58,9 @@ const generatorManager = managerParameter => {
   <!-- lists -->
       <div class="card" style="width: 18rem;">
           <ul class="list-group list-group-flush text-center">
-            <li class="list-group-item">${managerParameter.office}</li>
-            <li class="list-group-item">${managerParameter.id}</li>
-            <li class="list-group-item">${managerParameter.email}</li>
+            <li class="list-group-item">${response}</li>
+            <li class="list-group-item">${response}</li>
+            <li class="list-group-item">${response}</li>
           </ul>
         </div>
     </main>`;
