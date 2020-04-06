@@ -4,9 +4,9 @@ const jest = require('jest');
 const Employee = require('./Develop/lib/Employee');
 const generator = require('./Develop/literals/generator');
 
-
 // let engineerArray = [];
 let internArray = [];
+let managerResponse;
 
 // let htmlTemplate = generator.generator();
 
@@ -17,29 +17,32 @@ var mainPrompt = inquirer
         {
             type: 'input',
             message: "What is your manager's name?",
-            name: 'name'
+            name: 'name',
         },
         {
             type: 'input',
             message: "What is your manager's email?",
-            name: 'email'
+            name: 'email',
         },
         {
             type: 'input',
             message: "What is your manager's id?",
-            name: 'id'
+            name: 'id',
         },
         {
             type: 'input',
             message: "What is your manager's office number?",
-            name: 'office'
-        }
+            name: 'office',
+        },
     ])
-    .then(function(managerResponse) {
-        titlePrompt(managerResponse);
+    .then(function (response) {
+        managerResponse = response;
+        return titlePrompt(managerResponse);
+        // return managerResponse;
     });
 
-function titlePrompt(managerResponse) {
+function titlePrompt(response) {
+    console.log(response)
     console.log(managerResponse)
     inquirer
         .prompt([
@@ -47,33 +50,34 @@ function titlePrompt(managerResponse) {
                 type: 'list',
                 message: 'What is your title?',
                 choices: ['Engineer', 'Intern', 'Finished!'],
-                name: 'title'
-            }
+                name: 'title',
+            },
         ])
-        .then(function(response) {
+        .then(function (response) {
             title = response.title;
-            console.log(response)
 
             if (title === 'Engineer') {
-                console.log(managerResponse)
-                console.log(response)
                 engineerPrompt(title);
-            } 
+            }
             if (title === 'Intern') {
-                console.log(managerResponse)
                 internPrompt(title);
-            } 
+            }
             if (title === 'Finished!') {
-                console.log(managerResponse)
-                managerResponse = JSON.stringify(managerResponse)
+                console.log(response + 'on line 61')
+                response = JSON.stringify(managerResponse);
+                console.log(response + 'on line 63')
 
-                fs.writeFile('index.html', generator.generator(managerResponse), err => {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        console.log('Successfully written to file.');
+                fs.writeFile(
+                    'index.html',
+                    generator.generator(response),
+                    (err) => {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            console.log('Successfully written to file.');
+                        }
                     }
-                });
+                );
             }
         });
 }
@@ -84,33 +88,27 @@ function engineerPrompt(title) {
             {
                 type: 'input',
                 message: `What is the ${title}'s name?`,
-                name: 'name'
+                name: 'name',
             },
             {
                 type: 'input',
                 message: `What is the ${title}'s id?`,
-                name: 'id'
+                name: 'id',
             },
             {
                 type: 'input',
                 message: `What is the ${title}'s email?`,
-                name: 'email'
+                name: 'email',
             },
             {
                 type: 'input',
                 message: `What is the ${title}'s github username?`,
-                name: 'github'
-            }
+                name: 'github',
+            },
         ])
-        .then(function(response) {
+        .then(function (response) {
             let engineerArray = [];
             engineerArray = engineerArray.push(response);
-
-            console.log('ABOVE CONSOLE LOG OF RESPONSE');
-            console.log(response);
-            console.log('ABOVE CONSOLE LOG OF ENGINEER ARRAY');
-            console.log(engineerArray);
-            console.log('BELOW CONSOLE LOG OF ENGINEER ARRAY');
             titlePrompt();
         });
 }
@@ -121,28 +119,26 @@ function internPrompt(title) {
             {
                 type: 'input',
                 message: `What is the ${title}'s name?`,
-                name: 'name'
+                name: 'name',
             },
             {
                 type: 'input',
                 message: `What is the ${title}'s id?`,
-                name: 'id'
+                name: 'id',
             },
             {
                 type: 'input',
                 message: `What is the ${title}'s email?`,
-                name: 'email'
+                name: 'email',
             },
             {
                 type: 'input',
                 message: `Where does the ${title} go to school?`,
-                name: 'school'
-            }
+                name: 'school',
+            },
         ])
-        .then(function(response) {
+        .then(function (response) {
             internArray = internArray.push(response);
-            console.log(internArray);
             titlePrompt();
         });
 }
-

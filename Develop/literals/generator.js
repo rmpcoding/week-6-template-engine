@@ -5,6 +5,7 @@ const Manager = require('../lib/Manager');
 
 
 const generator = (managerResponse) => {
+    managerResponse = JSON.parse(managerResponse)
     console.log(managerResponse + "inside line 8 of Generator function");
     
     let htmlTemplate = `<!DOCTYPE html>
@@ -43,10 +44,14 @@ ${generatorIntern(Intern)}`;
 };
 
 const generatorManager = (response) => {
-  response = 
+  response = JSON.stringify(response)
+  console.log(response)
+  response = JSON.parse(response)
+  console.log(response)
   console.log(response + "INSIDE MANAGER CARD")
-    let managerCard = `<main>
-  <!-- cards -->
+
+let managerCard = `<main>
+<!-- cards -->
       <div class="card" style="width: 18rem;">
           <div class="card-body">
             <h5 class="card-title">Manager</h5>
@@ -58,9 +63,9 @@ const generatorManager = (response) => {
   <!-- lists -->
       <div class="card" style="width: 18rem;">
           <ul class="list-group list-group-flush text-center">
-            <li class="list-group-item">${response}</li>
-            <li class="list-group-item">${response}</li>
-            <li class="list-group-item">${response}</li>
+            <li class="list-group-item">${response.name}</li>
+            <li class="list-group-item">${response.email}</li>
+            <li class="list-group-item">${response.office}</li>
           </ul>
         </div>
     </main>`;
@@ -117,7 +122,7 @@ const generatorIntern = internParameter => {
 
 module.exports = {
     generator: generator,
-    generatorManager: generatorManager,
-    generatorEngineer: generatorEngineer,
-    generatorIntern: generatorIntern
+    // generatorManager: generatorManager,
+    // generatorEngineer: generatorEngineer,
+    // generatorIntern: generatorIntern
 };
