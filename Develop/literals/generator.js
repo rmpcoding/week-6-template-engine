@@ -1,13 +1,8 @@
-const Employee = require('../lib/Employee');
-const Engineer = require('../lib/Engineer');
-const Intern = require('../lib/Intern');
-const Manager = require('../lib/Manager');
+const generator = (managerResponse, engineerResponse, internResponse) => {
+    managerResponse = JSON.parse(managerResponse);
+    engineerResponse = JSON.parse(engineerResponse);
+    internResponse = JSON.parse(internResponse);
 
-
-const generator = (managerResponse) => {
-    managerResponse = JSON.parse(managerResponse)
-    console.log(managerResponse + "inside line 8 of Generator function");
-    
     let htmlTemplate = `<!DOCTYPE html>
   <html lang="en">
   <head>
@@ -38,23 +33,17 @@ const generator = (managerResponse) => {
 <hr class="my-4">
 
 ${generatorManager(managerResponse)}
-${generatorEngineer(Engineer)}
-${generatorIntern(Intern)}`;
+${generatorEngineer(engineerResponse)}
+${generatorIntern(internResponse)}`;
     return htmlTemplate;
 };
 
 const generatorManager = (response) => {
-  response = JSON.stringify(response)
-  console.log(response)
-  response = JSON.parse(response)
-  console.log(response)
-  console.log(response + "INSIDE MANAGER CARD")
-
-let managerCard = `<main>
+    let managerCard = `<main>
 <!-- cards -->
       <div class="card" style="width: 18rem;">
           <div class="card-body">
-            <h5 class="card-title">Manager</h5>
+            <h5 class="card-title">${response.name}</h5>
             <br>
             <h6 class="card-subtitle mb-2">Manager</h6>
           </div>
@@ -63,22 +52,22 @@ let managerCard = `<main>
   <!-- lists -->
       <div class="card" style="width: 18rem;">
           <ul class="list-group list-group-flush text-center">
-            <li class="list-group-item">${response.name}</li>
-            <li class="list-group-item">${response.email}</li>
-            <li class="list-group-item">${response.office}</li>
+            <li class="list-group-item">ID: ${response.id}</li>
+            <li class="list-group-item">Email: ${response.email}</li>
+            <li class="list-group-item">Office: ${response.office}</li>
           </ul>
         </div>
     </main>`;
     return managerCard;
 };
 
-const generatorEngineer = engineerParameter => {
-    console.log(engineerParameter);
+const generatorEngineer = (response) => {
+    console.log(response);
     let engineerCard = `<main>
   <!-- cards -->
       <div class="card" style="width: 18rem;">
           <div class="card-body">
-            <h5 class="card-title">${engineerParameter.name}</h5>
+            <h5 class="card-title">${response.name}</h5>
             <br>
             <h6 class="card-subtitle mb-2">Engineer</h6>
           </div>
@@ -87,22 +76,22 @@ const generatorEngineer = engineerParameter => {
   <!-- lists -->
       <div class="card" style="width: 18rem;">
           <ul class="list-group list-group-flush text-center">
-            <li class="list-group-item">${engineerParameter.id}</li>
-            <li class="list-group-item">${engineerParameter.email}</li>
-            <li class="list-group-item">${engineerParameter.github}</li>
+            <li class="list-group-item">${response.id}</li>
+            <li class="list-group-item">${response.email}</li>
+            <li class="list-group-item">${response.github}</li>
           </ul>
         </div>
     </main>`;
     return engineerCard;
 };
 
-const generatorIntern = internParameter => {
-    console.log(internParameter)
+const generatorIntern = (response) => {
+    console.log(response);
     let internCard = `<main>
   <!-- cards -->
       <div class="card" style="width: 18rem;">
           <div class="card-body">
-            <h5 class="card-title">${internParameter}</h5>
+            <h5 class="card-title">${response.name}</h5>
             <br>
             <h6 class="card-subtitle mb-2">Intern</h6>
           </div>
@@ -111,9 +100,9 @@ const generatorIntern = internParameter => {
   <!-- lists -->
       <div class="card" style="width: 18rem;">
           <ul class="list-group list-group-flush text-center">
-            <li class="list-group-item">${internParameter}</li>
-            <li class="list-group-item">${internParameter}</li>
-            <li class="list-group-item">${internParameter}</li>
+            <li class="list-group-item">${response.id}</li>
+            <li class="list-group-item">${response.email}</li>
+            <li class="list-group-item">${response.school}</li>
           </ul>
         </div>
     </main>`;
@@ -121,8 +110,5 @@ const generatorIntern = internParameter => {
 };
 
 module.exports = {
-    generator: generator,
-    // generatorManager: generatorManager,
-    // generatorEngineer: generatorEngineer,
-    // generatorIntern: generatorIntern
+    generator: generator
 };

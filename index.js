@@ -1,14 +1,10 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-const jest = require('jest');
-const Employee = require('./Develop/lib/Employee');
 const generator = require('./Develop/literals/generator');
 
-// let engineerArray = [];
-let internArray = [];
 let managerResponse;
-
-// let htmlTemplate = generator.generator();
+let engineerResponse;
+let internResponse;
 
 // Commence cli application via inquirer
 // ============================================================
@@ -37,13 +33,10 @@ var mainPrompt = inquirer
     ])
     .then(function (response) {
         managerResponse = response;
-        return titlePrompt(managerResponse);
-        // return managerResponse;
+        titlePrompt(managerResponse);
     });
 
 function titlePrompt(response) {
-    console.log(response)
-    console.log(managerResponse)
     inquirer
         .prompt([
             {
@@ -63,13 +56,17 @@ function titlePrompt(response) {
                 internPrompt(title);
             }
             if (title === 'Finished!') {
-                console.log(response + 'on line 61')
-                response = JSON.stringify(managerResponse);
-                console.log(response + 'on line 63')
+                managerResponse = JSON.stringify(managerResponse);
+                engineerResponse = JSON.stringify(engineerResponse);
+                internResponse = JSON.stringify(internResponse);
 
                 fs.writeFile(
                     'index.html',
-                    generator.generator(response),
+                    generator.generator(
+                        managerResponse,
+                        engineerResponse,
+                        internResponse
+                    ),
                     (err) => {
                         if (err) {
                             console.log(err);
@@ -107,9 +104,9 @@ function engineerPrompt(title) {
             },
         ])
         .then(function (response) {
-            let engineerArray = [];
-            engineerArray = engineerArray.push(response);
+            engineerResponse = response;
             titlePrompt();
+            return engineerResponse;
         });
 }
 
@@ -138,7 +135,8 @@ function internPrompt(title) {
             },
         ])
         .then(function (response) {
-            internArray = internArray.push(response);
+            internResponse = response;
             titlePrompt();
+            return internResponse;
         });
 }
