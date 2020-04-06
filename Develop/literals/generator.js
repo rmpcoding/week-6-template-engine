@@ -13,6 +13,7 @@ const generator = (managerResponse, engineerResponse, internResponse) => {
     <title>Template</title>
   </head>
     <body>
+    <div class="container-fluid">
   <style>
   .jumbotron {
     background-color: #fad390;
@@ -34,13 +35,18 @@ const generator = (managerResponse, engineerResponse, internResponse) => {
 
 ${generatorManager(managerResponse)}
 ${generatorEngineer(engineerResponse)}
-${generatorIntern(internResponse)}`;
+${generatorIntern(internResponse)}
+</div>
+</body>
+</html>`;
     return htmlTemplate;
 };
 
 const generatorManager = (response) => {
-    let managerCard = `<main>
+    let managerCard = `
 <!-- cards -->
+  <div class="row">
+    <div class="col-sm-4">
       <div class="card" style="width: 18rem;">
           <div class="card-body">
             <h4 class="card-title">${response.name}</h4>
@@ -57,14 +63,14 @@ const generatorManager = (response) => {
             <li class="list-group-item">Office: ${response.office}</li>
           </ul>
         </div>
-    </main>`;
+      </div>`;
     return managerCard;
 };
 
 const generatorEngineer = (response) => {
     console.log(response);
-    let engineerCard = `<main>
-  <!-- cards -->
+    let engineerCard = `<!-- cards -->
+    <div class="col-sm-4">
       <div class="card" style="width: 18rem;">
           <div class="card-body">
             <h4 class="card-title">${response.name}</h4>
@@ -78,17 +84,17 @@ const generatorEngineer = (response) => {
           <ul class="list-group list-group-flush text-center">
             <li class="list-group-item">ID: ${response.id}</li>
             <li class="list-group-item">Email: ${response.email}</li>
-            <li class="list-group-item">GitHub${response.github}</li>
+            <li class="list-group-item">GitHub: ${response.github}</li>
           </ul>
         </div>
-    </main>`;
+      </div>`;
     return engineerCard;
 };
 
 const generatorIntern = (response) => {
     console.log(response);
-    let internCard = `<main>
-  <!-- cards -->
+    let internCard = `<!-- cards -->
+      <div class="col-sm-4">
       <div class="card" style="width: 18rem;">
           <div class="card-body">
             <h4 class="card-title">${response.name}</h4>
@@ -105,10 +111,10 @@ const generatorIntern = (response) => {
             <li class="list-group-item">School: ${response.school}</li>
           </ul>
         </div>
-    </main>`;
+      </div>`;
     return internCard;
 };
 
 module.exports = {
-    generator: generator
+    generator: generator,
 };
