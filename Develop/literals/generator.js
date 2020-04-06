@@ -15,7 +15,7 @@ const generator = (managerResponse, engineerResponse, internResponse) => {
     <body>
   <style>
   .jumbotron {
-    background-color: rgb(199, 101, 101);
+    background-color: #fad390;
   }
 
   .card {
@@ -23,12 +23,12 @@ const generator = (managerResponse, engineerResponse, internResponse) => {
   }
 
   .card-body {
-    background-color: royalblue;
+    background-color: #6a89cc;
   }
 </style>
 
 <div class="jumbotron">
-<h1 class="display-4 text-center">My Team</h1>
+<h1 class="display-4 text-center">Team Profile!</h1>
 </div>
 <hr class="my-4">
 
@@ -43,7 +43,7 @@ const generatorManager = (response) => {
 <!-- cards -->
       <div class="card" style="width: 18rem;">
           <div class="card-body">
-            <h5 class="card-title">${response.name}</h5>
+            <h4 class="card-title">${response.name}</h4>
             <br>
             <h6 class="card-subtitle mb-2">Manager</h6>
           </div>
@@ -67,7 +67,7 @@ const generatorEngineer = (response) => {
   <!-- cards -->
       <div class="card" style="width: 18rem;">
           <div class="card-body">
-            <h5 class="card-title">${response.name}</h5>
+            <h4 class="card-title">${response.name}</h4>
             <br>
             <h6 class="card-subtitle mb-2">Engineer</h6>
           </div>
@@ -76,9 +76,9 @@ const generatorEngineer = (response) => {
   <!-- lists -->
       <div class="card" style="width: 18rem;">
           <ul class="list-group list-group-flush text-center">
-            <li class="list-group-item">${response.id}</li>
-            <li class="list-group-item">${response.email}</li>
-            <li class="list-group-item">${response.github}</li>
+            <li class="list-group-item">ID: ${response.id}</li>
+            <li class="list-group-item">Email: ${response.email}</li>
+            <li class="list-group-item">GitHub${response.github}</li>
           </ul>
         </div>
     </main>`;
@@ -91,7 +91,7 @@ const generatorIntern = (response) => {
   <!-- cards -->
       <div class="card" style="width: 18rem;">
           <div class="card-body">
-            <h5 class="card-title">${response.name}</h5>
+            <h4 class="card-title">${response.name}</h4>
             <br>
             <h6 class="card-subtitle mb-2">Intern</h6>
           </div>
@@ -100,9 +100,9 @@ const generatorIntern = (response) => {
   <!-- lists -->
       <div class="card" style="width: 18rem;">
           <ul class="list-group list-group-flush text-center">
-            <li class="list-group-item">${response.id}</li>
-            <li class="list-group-item">${response.email}</li>
-            <li class="list-group-item">${response.school}</li>
+            <li class="list-group-item">ID: ${response.id}</li>
+            <li class="list-group-item">Email: ${response.email}</li>
+            <li class="list-group-item">School: ${response.school}</li>
           </ul>
         </div>
     </main>`;
