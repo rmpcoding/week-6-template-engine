@@ -81,7 +81,6 @@ const generatorManager = (response) => {
 };
 
 const generatorEngineer = (response) => {
-    console.log(response);
     let engineerCard = `<!-- cards -->
     <div class="col-sm-4">
       <div class="card" style="width: 18rem;">
@@ -105,7 +104,6 @@ const generatorEngineer = (response) => {
 };
 
 const generatorIntern = (response) => {
-    console.log(response);
     let internCard = `<!-- cards -->
       <div class="col-sm-4">
       <div class="card" style="width: 18rem;">
