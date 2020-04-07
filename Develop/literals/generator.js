@@ -1,7 +1,13 @@
 const generator = (managerResponse, engineerResponse, internResponse) => {
     managerResponse = JSON.parse(managerResponse);
-    engineerResponse = JSON.parse(engineerResponse);
-    internResponse = JSON.parse(internResponse);
+
+    engineerResponse
+        ? (engineerResponse = JSON.parse(engineerResponse))
+        : console.log('No engineers selected');
+
+    internResponse
+        ? (internResponse = JSON.parse(internResponse))
+        : console.log('No interns selected.');
 
     let htmlTemplate = `<!DOCTYPE html>
   <html lang="en">
@@ -34,8 +40,15 @@ const generator = (managerResponse, engineerResponse, internResponse) => {
 <hr class="my-4">
 
 ${generatorManager(managerResponse)}
-${generatorEngineer(engineerResponse)}
-${generatorIntern(internResponse)}
+${
+    engineerResponse
+        ? generatorEngineer(engineerResponse)
+        : notSelected()
+}
+${
+    internResponse 
+        ? generatorIntern(internResponse) 
+        : notSelected()}
 </div>
 </body>
 </html>`;
@@ -113,6 +126,10 @@ const generatorIntern = (response) => {
         </div>
       </div>`;
     return internCard;
+};
+
+const notSelected = () => {
+    return '';
 };
 
 module.exports = {
