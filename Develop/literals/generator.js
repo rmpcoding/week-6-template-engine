@@ -96,11 +96,12 @@ const generatorEngineer = response => {
 };
 
 const generatorIntern = response => {
-    let internCard = `<!-- cards -->
+  return response.map(element => {
+    return internCard = `<!-- cards -->
       <div class="col-sm-4">
       <div class="card" style="width: 18rem;">
           <div class="card-body">
-            <h4 class="card-title">${response.name}</h4>
+            <h4 class="card-title">${element.name}</h4>
             <br>
             <h6 class="card-subtitle mb-2">Intern</h6>
           </div>
@@ -109,13 +110,13 @@ const generatorIntern = response => {
   <!-- lists -->
       <div class="card" style="width: 18rem;">
           <ul class="list-group list-group-flush text-center">
-            <li class="list-group-item">ID: ${response.id}</li>
-            <li class="list-group-item">Email: ${response.email}</li>
-            <li class="list-group-item">School: ${response.school}</li>
+            <li class="list-group-item">ID: ${element.id}</li>
+            <li class="list-group-item">Email: ${element.email}</li>
+            <li class="list-group-item">School: ${element.school}</li>
           </ul>
         </div>
       </div>`;
-    return internCard;
+  }).join('');
 };
 
 const notSelected = () => {
