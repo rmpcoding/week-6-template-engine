@@ -1,7 +1,7 @@
 const generator = (managerResponse, engineerResponse, internResponse) => {
-    managerResponse = JSON.parse(managerResponse);
+managerResponse = JSON.parse(managerResponse);
 
-    engineerResponse
+engineerResponse
         ? (engineerResponse = JSON.parse(engineerResponse))
         : console.log('No engineers selected');
 
@@ -9,7 +9,7 @@ const generator = (managerResponse, engineerResponse, internResponse) => {
         ? (internResponse = JSON.parse(internResponse))
         : console.log('No interns selected.');
 
-    let htmlTemplate = `<!DOCTYPE html>
+    return htmlTemplate = `<!DOCTYPE html>
   <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -40,15 +40,14 @@ const generator = (managerResponse, engineerResponse, internResponse) => {
 <hr class="my-4">
 
 ${generatorManager(managerResponse)}
-${generatorEngineer(engineerResponse)}
+${engineerResponse ? generatorEngineer(engineerResponse) : notSelected()}
 ${internResponse ? generatorIntern(internResponse) : notSelected()}
 </div>
 </body>
 </html>`;
-    return htmlTemplate;
 };
 
-const generatorManager = (response) => {
+const generatorManager = response => {
     return managerCard = `
 <!-- cards -->
   <div class="row">
@@ -72,9 +71,9 @@ const generatorManager = (response) => {
       </div>`;
 };
 
-const generatorEngineer = (response) => {
+const generatorEngineer = response => {
     return response.map(element => {
-        return `<!-- cards -->
+        return engineerCard = `<!-- cards -->
       <div class="col-sm-4">
         <div class="card" style="width: 18rem;">
             <div class="card-body">
@@ -92,12 +91,11 @@ const generatorEngineer = (response) => {
               <li class="list-group-item">GitHub: ${element.github}</li>
             </ul>
           </div>
-        </div>`;
-    });
-
+        </div>`
+    }).join('');
 };
 
-const generatorIntern = (response) => {
+const generatorIntern = response => {
     let internCard = `<!-- cards -->
       <div class="col-sm-4">
       <div class="card" style="width: 18rem;">
