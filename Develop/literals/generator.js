@@ -40,15 +40,8 @@ const generator = (managerResponse, engineerResponse, internResponse) => {
 <hr class="my-4">
 
 ${generatorManager(managerResponse)}
-${
-    engineerResponse
-        ? generatorEngineer(engineerResponse)
-        : notSelected()
-}
-${
-    internResponse 
-        ? generatorIntern(internResponse) 
-        : notSelected()}
+${generatorEngineer(engineerResponse)}
+${internResponse ? generatorIntern(internResponse) : notSelected()}
 </div>
 </body>
 </html>`;
@@ -56,7 +49,7 @@ ${
 };
 
 const generatorManager = (response) => {
-    let managerCard = `
+    return managerCard = `
 <!-- cards -->
   <div class="row">
     <div class="col-sm-4">
@@ -77,30 +70,31 @@ const generatorManager = (response) => {
           </ul>
         </div>
       </div>`;
-    return managerCard;
 };
 
 const generatorEngineer = (response) => {
-    let engineerCard = `<!-- cards -->
-    <div class="col-sm-4">
-      <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h4 class="card-title">${response.name}</h4>
-            <br>
-            <h6 class="card-subtitle mb-2">Engineer</h6>
+    return response.map(element => {
+        return `<!-- cards -->
+      <div class="col-sm-4">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h4 class="card-title">${element.name}</h4>
+              <br>
+              <h6 class="card-subtitle mb-2">Engineer</h6>
+            </div>
           </div>
-        </div>
+          
+    <!-- lists -->
+        <div class="card" style="width: 18rem;">
+            <ul class="list-group list-group-flush text-center">
+              <li class="list-group-item">ID: ${element.id}</li>
+              <li class="list-group-item">Email: ${element.email}</li>
+              <li class="list-group-item">GitHub: ${element.github}</li>
+            </ul>
+          </div>
+        </div>`;
+    });
 
-  <!-- lists -->
-      <div class="card" style="width: 18rem;">
-          <ul class="list-group list-group-flush text-center">
-            <li class="list-group-item">ID: ${response.id}</li>
-            <li class="list-group-item">Email: ${response.email}</li>
-            <li class="list-group-item">GitHub: ${response.github}</li>
-          </ul>
-        </div>
-      </div>`;
-    return engineerCard;
 };
 
 const generatorIntern = (response) => {

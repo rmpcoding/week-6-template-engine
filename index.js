@@ -6,6 +6,8 @@ let managerResponse;
 let engineerResponse;
 let internResponse;
 
+let engineerArr = [];
+
 // Commence cli application via inquirer
 // ============================================================
 var mainPrompt = inquirer
@@ -57,14 +59,14 @@ function titlePrompt(response) {
             }
             if (title === 'Finished!') {
                 managerResponse = JSON.stringify(managerResponse);
-                engineerResponse = JSON.stringify(engineerResponse);
+                engineerArr = JSON.stringify(engineerArr);
                 internResponse = JSON.stringify(internResponse);
 
                 fs.writeFile(
                     'index.html',
                     generator.generator(
                         managerResponse,
-                        engineerResponse,
+                        engineerArr,
                         internResponse
                     ),
                     (err) => {
@@ -105,6 +107,8 @@ function engineerPrompt(title) {
         ])
         .then(function (response) {
             engineerResponse = response;
+            engineerArr.push(engineerResponse)
+            console.log(engineerArr)
             titlePrompt();
             return engineerResponse;
         });
