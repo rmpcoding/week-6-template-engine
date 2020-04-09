@@ -83,7 +83,7 @@ function titlePrompt(response) {
 }
 
 function engineerPrompt(title) {
-    inquirer
+    inquirer 
         .prompt([
             {
                 type: 'input',

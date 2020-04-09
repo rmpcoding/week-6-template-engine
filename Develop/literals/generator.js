@@ -16,6 +16,7 @@ engineerResponse
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
     <title>Template</title>
   </head>
     <body>
@@ -23,14 +24,25 @@ engineerResponse
   <style>
   .jumbotron {
     background-color: #fad390;
+    color: #2d3436;
   }
 
+  .display-4 {
+    font-size: 5.5rem!important;
+    font-weight: 100!important;
+  }
+  
   .card {
     margin: auto;
   }
 
   .card-body {
     background-color: #6a89cc;
+    color: #ffffff;
+  }
+
+  .card-subtitle {
+    display: inline;
   }
 </style>
 
@@ -54,9 +66,10 @@ const generatorManager = response => {
     <div class="col-sm-4">
       <div class="card" style="width: 18rem;">
           <div class="card-body">
-            <h4 class="card-title">${response.name}</h4>
+            <h4 class="card-title">${response.name}</h4> 
             <br>
             <h6 class="card-subtitle mb-2">Manager</h6>
+            <i class="fas fa-mug-hot"></i> 
           </div>
         </div>
 
@@ -80,6 +93,7 @@ const generatorEngineer = response => {
               <h4 class="card-title">${element.name}</h4>
               <br>
               <h6 class="card-subtitle mb-2">Engineer</h6>
+              <i class="far fa-clipboard"></i>
             </div>
           </div>
           
@@ -104,6 +118,7 @@ const generatorIntern = response => {
             <h4 class="card-title">${element.name}</h4>
             <br>
             <h6 class="card-subtitle mb-2">Intern</h6>
+            <i class="fas fa-user-graduate"></i>
           </div>
         </div>
 
