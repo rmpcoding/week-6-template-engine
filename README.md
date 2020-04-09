@@ -12,7 +12,8 @@ The user is prompted to fill in the following information on employees:
 * school (intern)
 
 
-
+![](Assets/screenshot2.png)
+![](Assets/screenshot1.png)
 
 ## Technologies used
 
